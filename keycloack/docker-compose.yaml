@@ -29,3 +29,5 @@ services:
 
 volumes:
   keycloak-db-data:
+
+  
