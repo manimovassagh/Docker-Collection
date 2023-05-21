@@ -1,0 +1,30 @@
+version: '3'
+services:
+  mysql:
+    image: mysql:latest
+    restart: always
+    ports:
+      - 8088:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=mydb
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=password
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  mysql-workbench:
+    image: mysql/mysql-workbench:latest
+    restart: always
+    ports:
+      - 8089:3306
+    environment:
+      - MYSQL_HOST=mysql
+      - MYSQL_PORT=3306
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=password
+    depends_on:
+      - mysql
+
+volumes:
+  mysql_data:
